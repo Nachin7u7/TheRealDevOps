@@ -32,11 +32,11 @@ jobs:
         cd ..
 
     - name: Deploy to Skynet
-      uses: appleboy/ssh-action@v2
+      uses: appleboy/ssh-action@v1
       with:
         host: ${{ secrets.PRIVATE_SERVER_HOST }}:44  ## Agregar PRIVATE_SERVER_HOST con el puerto 44
         username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        password: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           mkdir -p /TheRealDevOps
           cd /TheRealDevOps
