@@ -61,10 +61,6 @@ jobs:
             npm install
             cd ../client
             npm install
-        - name: Build Application
-          run: |
-            cd /client
-            npm run build
         - name: QEMU
           uses: docker/setup-qemu-action@v3
         - name: Docker Buildx
