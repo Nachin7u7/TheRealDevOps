@@ -1,0 +1,36 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "7003:3000"
+    depends_on:
+      - mongo
+    command: npm start -- --port 3000
+    working_dir: /TheRealDevOps/client
+    volumes:
+      - ./client:/TheRealDevOps/client
+    environment:
+      - NODE_ENV=development
+    
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  
+  # api:
+  #     build:
+  #       context: ./api
+  #       dockerfile: Dockerfile
+  #     ports:
+  #       - "3000:3000"  
+  #     depends_on:
+  #       - mongo
+  #     command: npm start 
+  #     working_dir: /TheRealDevOps/api
+  #     volumes:
+  #       - ./api:/TheRealDevOps/api
+  #     environment:
+  #       - NODE_ENV=development
