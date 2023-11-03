@@ -32,9 +32,9 @@ jobs:
     - name: Deploy to Skynet
       uses: appleboy/ssh-action@v1
       with:
-        host: ${{ secrets.PRIVATE_SERVER_HOST }} ## agregar PRIVATE_SERVER_HOST
-        username: ${{ secrets.SSH_USERNAME }}    ## agregar SSH_USERNAME
-        key: ${{ secrets.SSH_PRIVATE_KEY }}      ## agregar SSH_PRIVATE_KEY
+        host: ${{ secrets.PRIVATE_SERVER_HOST }}:44 ## agregar PRIVATE_SERVER_HOST
+        username: ${{ secrets.SSH_USERNAME }}       ## agregar SSH_USERNAME
+        key: ${{ secrets.SSH_PRIVATE_KEY }}         ## agregar SSH_PRIVATE_KEY
         script: |
           # cd /ruta/a/tu/aplicacion
           git pull origin master

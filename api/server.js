@@ -57,4 +57,4 @@ mongoose.connect('mongodb://127.0.0.1:27017/tododb', {
       res.json(todo);
   });
 
-  app.listen(7003, () => console.log("Server started on port"))
+  app.listen(3000, () => console.log("Server started on port"))
