@@ -32,12 +32,7 @@ jobs:
         cd ..
 
     - name: Deploy to Skynet
-      uses: softprops/action-ssh@v2
-      with:
-        host: ${{ secrets.PRIVATE_SERVER_HOST }}:44  ## Agregar PRIVATE_SERVER_HOST con el puerto 44
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          mkdir -p /TheRealDevOps
-          cd /TheRealDevOps
-          git pull origin master
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y sshpass
+        sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.PRIVATE_SERVER_HOST }} -p 44 "mkdir -p /TheRealDevOps && cd /TheRealDevOps && git pull origin master"
