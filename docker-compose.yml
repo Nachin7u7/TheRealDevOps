@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "7003:7003"
+    depends_on:
+      - mongo
+    command: npm start -- --port 7003
+    working_dir: /TheRealDevOps/client
+    volumes:
+      - ./client:/TheRealDevOps/client
+    environment:
+      - NODE_ENV=development
+    
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
