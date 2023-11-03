@@ -20,21 +20,24 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        (cd .\api\ && npm install) &
-        (cd .\client\ && npm install) &
-        wait
-    - name: Build
+        cd api
+        npm install
+        cd ../client
+        npm install
+
+    - name: Build Client
       run: |
-        (cd client && npm start) &
-        (cd api && npm start) &
-        wait
+        cd client
+        npm run build
+        cd ..
 
     - name: Deploy to Skynet
       uses: appleboy/ssh-action@v1
       with:
-        host: ${{ secrets.PRIVATE_SERVER_HOST }}:44 ## agregar PRIVATE_SERVER_HOST
-        username: ${{ secrets.SSH_USERNAME }}       ## agregar SSH_USERNAME
-        key: ${{ secrets.SSH_PRIVATE_KEY }}         ## agregar SSH_PRIVATE_KEY
+        host: ${{ secrets.PRIVATE_SERVER_HOST }}:44  ## Agregar PRIVATE_SERVER_HOST con el puerto 44
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          # cd /ruta/a/tu/aplicacion
+          mkdir -p /TheRealDevOps
+          cd /TheRealDevOps
           git pull origin master
