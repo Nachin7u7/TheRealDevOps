@@ -35,6 +35,4 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y sshpass
-        sudo apt-get update
-        sudo apt-get install -y sshpass
         sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.PRIVATE_SERVER_HOST }} -p 44 "mkdir -p /TheRealDevOps && cd /TheRealDevOps && git pull origin master"
