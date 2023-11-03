@@ -14,23 +14,16 @@ services:
       - ./client:/TheRealDevOps/client
     environment:
       - NODE_ENV=development
-    
+    networks:
+      - thebobs  # Conectar a la red "thebobs"
+
   mongo:
     image: mongo:latest
     ports:
       - "27017:27017"
-  
-  # api:
-  #     build:
-  #       context: ./api
-  #       dockerfile: Dockerfile
-  #     ports:
-  #       - "3000:3000"  
-  #     depends_on:
-  #       - mongo
-  #     command: npm start 
-  #     working_dir: /TheRealDevOps/api
-  #     volumes:
-  #       - ./api:/TheRealDevOps/api
-  #     environment:
-  #       - NODE_ENV=development
+    networks:
+      - thebobs  # Conectar a la red "thebobs"
+
+networks:
+  thebobs:  # Definir la red "thebobs"
+    driver: bridge
